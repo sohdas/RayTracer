@@ -5,7 +5,7 @@
 #include "vec3.h"
 
 class sphere: public entity {
-    private:
+    public:
         sphere() {}
         sphere(point3 cen, float r) : center(cen), radius(r) {};
 
@@ -34,6 +34,15 @@ bool sphere::hit(const ray& r, float tmin, float tmax, hit_record& rec) const {
             vec3 outward_normal = (rec.p - center) / radius;
             rec.set_face_normal(r, outward_normal);
 
+            return true;
+        }
+
+        temp = (-half_b + root) / a;
+        if (temp < tmax && temp > tmin) {
+            rec.t = temp;
+            rec.p = r.at(rec.t);
+            vec3 outward_normal = (rec.p - center) / radius;
+            rec.set_face_normal(r, outward_normal);
             return true;
         }
     }

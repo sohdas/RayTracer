@@ -1,3 +1,4 @@
+#ifndef ENTITY_LIST_H
 #define ENTITY_LIST_H
 #include "entity.h"
 
@@ -8,7 +9,7 @@ using std::shared_ptr;
 using std::make_shared;
 
 class entity_list: public entity {
-    private:
+    public:
         entity_list() {}
         entity_list(shared_ptr<entity> object) { add(object); }
 
@@ -36,3 +37,5 @@ bool entity_list::hit(const ray& r, float tmin, float tmax, hit_record& rec) con
 
     return hit_anything;
 }
+
+#endif
