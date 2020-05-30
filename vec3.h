@@ -4,6 +4,8 @@
 #include <cmath>
 #include <iostream>
 
+#include "utility.h"
+
 class vec3 {
     public:
         vec3(): e{0,0,0} {}
@@ -49,6 +51,14 @@ class vec3 {
 
         inline static vec3 random(float min, float max) {
             return vec3(random_float(min,max), random_float(min,max), random_float(min,max));
+        }
+
+        inline static vec3 random_in_unit_sphere() {
+            while (true) {
+                auto p = vec3::random(-1,1);
+                if (p.length_squared() >= 1) continue;
+                return p;
+            }
         }
     
     public:
