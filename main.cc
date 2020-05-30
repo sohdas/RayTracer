@@ -15,7 +15,7 @@ color ray_color(const ray& r, const entity& world, int depth) {
         return color(0,0,0);
 
     // Check for hit on entity
-    if (world.hit(r,0,infinity,rec)) {
+    if (world.hit(r, 0.001, infinity, rec)) {
         point3 target = rec.p + rec.normal + vec3::random_in_unit_sphere();
         return 0.5 * ray_color(ray(rec.p, target-rec.p), world, depth - 1);
     }
@@ -47,7 +47,7 @@ int main() {
 
     entity_list world;
 
-    world.add(make_shared<sphere>(point3(0, 0, -1), 0.9)); // Small center spere
+    world.add(make_shared<sphere>(point3(0, 0, -1), 0.5)); // Small center spere
     world.add(make_shared<sphere>(point3(0,-100.5, -1), 100)); // Large lower sphere
 
     camera cam;
